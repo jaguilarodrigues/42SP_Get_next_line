@@ -6,14 +6,16 @@
 #    By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/16 18:02:36 by jaqrodri          #+#    #+#              #
-#    Updated: 2020/02/16 18:12:26 by jaqrodri         ###   ########.fr        #
+#    Updated: 2020/02/19 06:26:59 by jaqrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#!/bin/bash
+#!/bin/sh
 
 for arg in ${@}
 do
-	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=${arg} get_next_line.c get_next_line_utils.c get_next_line.h
-	./a.out
+	#gcc -Wall -Wextra -Werror main_test.c get_next_line.h get_next_line_utils.c 
+	gcc -Wall -Wextra -Werror -g -D BUFFER_SIZE=${arg} ~/42/Get_next_line/42SP_Get_next_line/Get_next_line/*.c ~/42/Get_next_line/42SP_Get_next_line/Get_next_line/*.h
+#./a.out text
+#	rm ./a.out
 done
