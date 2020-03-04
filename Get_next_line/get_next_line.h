@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 21:39:05 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/02/17 21:26:26 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:41:43 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,7 @@ int		ft_strlen(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s1);
 char	*ft_strjoinchr(char *s1, char c);
+void	*ft_calloc(size_t count, size_t size);
+void	*ft_bzero(void *b, size_t n);
+void	*ft_memset(void *ptr, int x, size_t n);
 #endif

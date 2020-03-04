@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:17:04 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/02/17 21:28:22 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:41:08 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,10 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	sub[i + j] = '\0';
+	free(s1);
 	return (sub);
 }
-char	*ft_strdup(char *s1)
+char	*ft_strdupn(char *s1)
 {
 	char	*copstring;
 	int		i;
@@ -155,3 +156,37 @@ char	*ft_strjoinchr(char *s1, char c)
 	sub[i] = '\0';
 	return (sub);
 }
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void *p;
+
+	p = (char *)malloc(count * size);
+	if (p == NULL)
+		return (NULL);
+	ft_bzero(p, count * size);
+	return (p);
+}
+
+
+void	*ft_bzero(void *b, size_t n)
+{
+	return (ft_memset(b, 0, n));
+}
+
+void	*ft_memset(void *ptr, int x, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr2;
+
+	ptr2 = (unsigned char *)ptr;
+	i = 0;
+	while (i < n)
+	{
+		*ptr2 = (unsigned char)x;
+		i++;
+		ptr2++;
+	}
+	return (ptr);
+}
+

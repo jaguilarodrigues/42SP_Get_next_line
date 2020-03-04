@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:23:28 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/02/19 06:30:52 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:40:25 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ int main(int argc, char *argv[])
 			return(1);
 		while(get_next_line(fd, (char **)&line) == 1)
 		{
-			// ft_putnbr(a);
-			//printf("%s\n", *line);
-			// ft_putstr("|\n");
-			
-		
+			printf("%s\n", *line);
 		}
+		printf("%s\n", *line);
 	}
 	else 
 		return (2);

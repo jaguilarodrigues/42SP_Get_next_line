@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/02/20 11:53:47 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/04 16:37:28 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,40 @@ int get_next_line(int fd, char **line)
 	char		*a;
 	static char	*res;
 	
-	a = malloc(sizeof(char));
-	ret = -1;
+	a = ft_calloc(1, sizeof(char));
+	if (res == NULL)
+		res = ft_calloc(1, sizeof(char));
+	ret = 1;
 	p = NULL;
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	while(p == NULL)
+	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	while(p == NULL && ret >= 0)
 	{
+		if(*res != '\0')
+		{
+			a = ft_strjoin(a, res);
+			free(res);
+			res = ft_calloc(1, sizeof(char));
+		}
 		ret = read(fd, buff, BUFFER_SIZE);
 		buff[ret] = '\0';
 		p = ft_strchr(buff, '\n');
-		if (p == NULL)
+		if (p != NULL)
+		{
+			*(p++) = '\0';
+			res = ft_strjoin(res, p);
+		}
 			a = ft_strjoin(a, buff);
-		else
-			a = ft_strjoinchr(a, *(p++));
+		if(ret == 0)
+			break;
 	}
-	// while(*p != '\n')
-	// {
-	// 	ft_strjoinchr(a, *p);
-	// 	p++;
-	// }
-	res = p;
+	
 	*line = a;
 	
 	free(buff);
+	free(a);
+	buff = NULL;
+	a = NULL;
+	
 	if(ret == -1 || ret == 0)
 		return (0);
 	return (1);
