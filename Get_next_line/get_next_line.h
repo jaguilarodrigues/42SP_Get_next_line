@@ -6,14 +6,12 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 21:39:05 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/03/04 14:41:43 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/13 01:01:29 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <sys/types.h>
 # include <sys/stat.h>
@@ -24,20 +22,12 @@
 # include <ctype.h>
 # include <limits.h>
 
-//# define BUFFER_SIZE 4000
-
 int		get_next_line(int fd, char **line);
-void	ft_putchr(char c);
-void	ft_putstr(char *s);
-void	ft_putendl(char *s);
-void	ft_putfile(int fd);
-void	ft_putnbr(int n);
-char	*ft_strchr(const char *s, int c);
-int		ft_strlen(char *str);
+int		ft_findchar(char *str, char c);
+char	*ft_calloc(int size);
+int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strdup(char *s1);
-char	*ft_strjoinchr(char *s1, char c);
-void	*ft_calloc(size_t count, size_t size);
-void	*ft_bzero(void *b, size_t n);
-void	*ft_memset(void *ptr, int x, size_t n);
+char	*ft_substr(char *s, int start, int len);
+char 	*ft_strcpy(char *dest, char *src);
+
 #endif

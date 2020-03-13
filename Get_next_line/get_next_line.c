@@ -6,59 +6,80 @@
 /*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/03/04 16:37:28 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/03/13 03:46:21 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-int get_next_line(int fd, char **line)
+char	*ft_strdup(char *s1)
 {
+	char	*copstring;
+	int		i;
 
-	char		*buff;
-	int			ret;
-	char		*p;
-	char		*a;
-	static char	*res;
-	
-	a = ft_calloc(1, sizeof(char));
-	if (res == NULL)
-		res = ft_calloc(1, sizeof(char));
-	ret = 1;
-	p = NULL;
-	buff = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	while(p == NULL && ret >= 0)
+	i = 0;
+	copstring = (char *)malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (copstring == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		if(*res != '\0')
-		{
-			a = ft_strjoin(a, res);
-			free(res);
-			res = ft_calloc(1, sizeof(char));
-		}
-		ret = read(fd, buff, BUFFER_SIZE);
-		buff[ret] = '\0';
-		p = ft_strchr(buff, '\n');
-		if (p != NULL)
-		{
-			*(p++) = '\0';
-			res = ft_strjoin(res, p);
-		}
-			a = ft_strjoin(a, buff);
-		if(ret == 0)
-			break;
+		copstring[i] = s1[i];
+		i++;
 	}
-	
-	*line = a;
-	
-	free(buff);
-	free(a);
-	buff = NULL;
-	a = NULL;
-	
-	if(ret == -1 || ret == 0)
-		return (0);
-	return (1);
-	
+	copstring[i] = '\0';
+	return (copstring);
 }
-	
+
+int		ft_creatline(char **s, char **line)
+{
+	int		n;
+	char	*aux;
+
+	n = ft_findchar(*s, '\n');
+	if (n < 0)
+	{
+		*line = ft_strdup(*s);
+		return (0);
+	}
+	*line = ft_substr(*s, 0, n);
+	aux = ft_substr(*s, n + 1, ft_strlen(*s) - n);
+	free(*s);
+	*s = aux;
+	aux = NULL;
+	return (1);
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static char	*str[OPEN_MAX];
+	int			ret;
+	char		*buff;
+
+	if ((fd < 0 || fd >= OPEN_MAX) || line == NULL
+		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
+		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
+		return (-1);
+	if (!str[fd] && !(str[fd] = ft_calloc(1)))
+		return (-1);
+	while (ft_findchar(str[fd], '\n') < 0)
+	{
+		if ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
+		{
+			buff[ret] = '\0';
+			str[fd] = ft_strjoin(str[fd], buff);
+		}
+		else if (ret == 0)
+		{
+			ft_creatline(&str[fd], line);
+			free(str[fd]);
+			str[fd] = ft_strdup("");
+				return (0);
+		}
+		else
+			return (-1);
+	}
+	ft_creatline(&str[fd], line);
+	free(buff);
+	buff = ft_strdup("");
+	return (1);
+}
