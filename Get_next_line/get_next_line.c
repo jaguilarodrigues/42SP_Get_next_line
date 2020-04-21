@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/21 19:43:40 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/21 19:57:50 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		get_next_line(int fd, char **line)
 	int			ret;
 	char		*buff;
 
-	if (gnl_validade(&fd, line, str, buff) < 0)
+	if (gnl_validade(&fd, line, str, buff = NULL) < 0)
 		return (-1);
 	while (ft_findchar(str[fd], '\n') < 0)
 	{
