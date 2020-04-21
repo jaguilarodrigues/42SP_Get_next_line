@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/21 19:21:07 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/21 19:34:58 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int		ft_creatline(char **s, char **line)
 int		gnl_validade(int *fd, char **line, char **str, char *buff)
 {
 	if ((*fd < 0 || *fd >= OPEN_MAX) || line == NULL
-		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
+		|| BUFFER_SIZE < 1 || (read(*fd, NULL, 0))
 		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
 	if (!(*str[*fd]) && !str[*fd] = ft_calloc(1)))
