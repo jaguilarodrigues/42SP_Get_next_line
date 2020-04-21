@@ -6,27 +6,11 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/20 22:32:52 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/21 18:37:51 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int		ft_findchar(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	if (str[i] == c)
-		return (i);
-	return (-1);
-}
 
 char	*ft_strdup(char *s1)
 {
@@ -65,17 +49,31 @@ int		ft_creatline(char **s, char **line)
 	return (1);
 }
 
+int		gnl_validade(int *fd, char **line, char **str, char **buff)
+{
+	if ((fd < 0 || fd >= OPEN_MAX) || line == NULL
+		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
+		|| !(*buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
+		return (-1);
+	if (!(*str[*fd]) && !(*(str[*fd]) = ft_calloc(1)))
+		return (-1);
+	return (1);
+}
+
+void	gnl_free(char **line, char **str, char *buff)
+{
+	ft_creatline((str), line);
+	free(buff);
+	buff = ft_strdup("");
+}
+
 int		get_next_line(int fd, char **line)
 {
 	static char	*str[OPEN_MAX];
 	int			ret;
 	char		*buff;
 
-	if ((fd < 0 || fd >= OPEN_MAX) || line == NULL
-		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
-		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (-1);
-	if (!str[fd] && !(str[fd] = ft_calloc(1)))
+	if (gnl_validade(fd, line, str, buff) < 0)
 		return (-1);
 	while (ft_findchar(str[fd], '\n') < 0)
 	{
@@ -94,8 +92,6 @@ int		get_next_line(int fd, char **line)
 		else
 			return (-1);
 	}
-	ft_creatline(&str[fd], line);
-	free(buff);
-	buff = ft_strdup("");
+	gnl_free(line, &str[fd], buff);
 	return (1);
 }
