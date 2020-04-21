@@ -6,27 +6,11 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 21:57:30 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/20 21:57:52 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/20 22:31:56 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-int		ft_findchar(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	if (str[i] == c)
-		return (i);
-	return (-1);
-}
 
 char	*ft_calloc(int size)
 {
@@ -95,7 +79,7 @@ char	*ft_substr(char *s, int start, int len)
 	return (a);
 }
 
-char *ft_strcpy(char *dest, char *src)
+char	*ft_strcpy(char *dest, char *src)
 {
 	int i;
 

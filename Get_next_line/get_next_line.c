@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/03/13 03:46:21 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/20 22:32:52 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+int		ft_findchar(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	if (str[i] == c)
+		return (i);
+	return (-1);
+}
 
 char	*ft_strdup(char *s1)
 {
@@ -73,7 +89,7 @@ int		get_next_line(int fd, char **line)
 			ft_creatline(&str[fd], line);
 			free(str[fd]);
 			str[fd] = ft_strdup("");
-				return (0);
+			return (0);
 		}
 		else
 			return (-1);

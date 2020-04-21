@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 21:39:05 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/03/13 01:01:29 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/20 22:33:30 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ char	*ft_calloc(int size);
 int		ft_strlen(char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, int start, int len);
-char 	*ft_strcpy(char *dest, char *src);
+char	*ft_strcpy(char *dest, char *src);
 
 #endif

@@ -6,11 +6,27 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 21:08:37 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/20 21:16:16 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/20 22:28:28 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+int		ft_findchar(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	if (str[i] == c)
+		return (i);
+	return (-1);
+}
 
 char	*ft_strdup(char *s1)
 {
@@ -73,7 +89,7 @@ int		get_next_line(int fd, char **line)
 			ft_creatline(&str[fd], line);
 			free(str[fd]);
 			str[fd] = ft_strdup("");
-				return (0);
+			return (0);
 		}
 		else
 			return (-1);
