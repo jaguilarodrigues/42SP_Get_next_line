@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaqrodri <jaqrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:23:28 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/03/04 16:40:25 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/22 14:20:05 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 {
 	int	fd;
 	// int a;
-	char *line[OPEN_MAX];
+	char *line[FOPEN_MAX];
 
-(void)argv;	
+	(void)argv;	
 	if (argc == 1)
 		fd = 0;
 	else if(argc == 2)

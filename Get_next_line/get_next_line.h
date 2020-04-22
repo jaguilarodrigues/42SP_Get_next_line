@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 21:39:05 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/21 20:28:25 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/22 00:06:06 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <ctype.h>
 # include <limits.h>
+# include <stdio.h>
 
 int		get_next_line(int fd, char **line);
 int		ft_findchar(char *str, char c);

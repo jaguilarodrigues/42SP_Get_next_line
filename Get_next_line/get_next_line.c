@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/21 20:27:31 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/22 00:05:23 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,17 @@ int		ft_creatline(char **s, char **line)
 	return (1);
 }
 
-int		gnl_validade(int *fd, char **line, char **str, char *buff)
-{
-	if ((*fd < 0 || *fd >= OPEN_MAX) || line == NULL
-		|| BUFFER_SIZE < 1 || (read(*fd, NULL, 0))
-		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (-1);
-	if (!(*str[*fd]) && !(str[*fd] = ft_calloc(1)))
-		return (-1);
-	return (1);
-}
-
-void	gnl_free(char **line, char **str, char *buff)
-{
-	ft_creatline((str), line);
-	free(buff);
-	buff = ft_strdup("");
-}
-
 int		get_next_line(int fd, char **line)
 {
-	static char	*str[OPEN_MAX];
+	static char	*str[FOPEN_MAX];
 	int			ret;
 	char		*buff;
 
-	if (gnl_validade(&fd, line, str, buff = NULL) < 0)
+	if ((fd < 0 || fd >= FOPEN_MAX) || line == NULL
+		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
+		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
+		return (-1);
+	if (!str[fd] && !(str[fd] = ft_calloc(1)))
 		return (-1);
 	while (ft_findchar(str[fd], '\n') < 0)
 	{
@@ -92,6 +78,8 @@ int		get_next_line(int fd, char **line)
 		else
 			return (-1);
 	}
-	gnl_free(line, &str[fd], buff);
+	ft_creatline(&str[fd], line);
+	free(buff);
+	buff = ft_strdup("");
 	return (1);
 }
