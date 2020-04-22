@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 21:57:30 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/20 21:57:52 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/22 14:41:01 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,4 @@ char	*ft_substr(char *s, int start, int len)
 	}
 	a[i] = '\0';
 	return (a);
-}
-
-char *ft_strcpy(char *dest, char *src)
-{
-	int i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }

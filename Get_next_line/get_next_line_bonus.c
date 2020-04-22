@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 21:08:37 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/20 21:16:16 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/22 14:41:58 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int		get_next_line(int fd, char **line)
 			ft_creatline(&str[fd], line);
 			free(str[fd]);
 			str[fd] = ft_strdup("");
-				return (0);
+			return (0);
 		}
 		else
 			return (-1);
