@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/20 21:08:37 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/22 14:41:58 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/23 00:05:28 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,37 +49,45 @@ int		ft_creatline(char **s, char **line)
 	return (1);
 }
 
-int		get_next_line(int fd, char **line)
+int		gnl_core(int fd, char *buff, char **s, char **line)
 {
-	static char	*str[OPEN_MAX];
-	int			ret;
-	char		*buff;
+	int	ret;
 
-	if ((fd < 0 || fd >= OPEN_MAX) || line == NULL
-		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
-		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (-1);
-	if (!str[fd] && !(str[fd] = ft_calloc(1)))
-		return (-1);
-	while (ft_findchar(str[fd], '\n') < 0)
+	while (ft_findchar(*s, '\n') < 0)
 	{
 		if ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
 		{
 			buff[ret] = '\0';
-			str[fd] = ft_strjoin(str[fd], buff);
+			*s = ft_strjoin(*s, buff);
 		}
 		else if (ret == 0)
 		{
-			ft_creatline(&str[fd], line);
-			free(str[fd]);
-			str[fd] = ft_strdup("");
+			ft_creatline(s, line);
+			free(*s);
+			s = ft_strdup("");
 			return (0);
 		}
 		else
 			return (-1);
 	}
-	ft_creatline(&str[fd], line);
+	ft_creatline(s, line);
+	return (1);
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static char	*str[FOPEN_MAX];
+	char		*buff;
+	int			aux;
+
+	if ((fd < 0 || fd >= FOPEN_MAX) || line == NULL
+		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
+		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
+		return (-1);
+	if (!str[fd] && !(str[fd] = ft_calloc(1)))
+		return (-1);
+	aux = gnl_core(fd, buff, &str[fd], line);
 	free(buff);
 	buff = ft_strdup("");
-	return (1);
+	return (aux);
 }
