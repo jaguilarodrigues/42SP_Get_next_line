@@ -6,7 +6,7 @@
 /*   By: jaqrodri <jaqrodri@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 03:25:08 by jaqrodri          #+#    #+#             */
-/*   Updated: 2020/04/22 17:48:50 by jaqrodri         ###   ########.fr       */
+/*   Updated: 2020/04/23 23:11:34 by jaqrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		gnl_core(int fd, char *buff, char **s, char **line)
 		{
 			ft_creatline(s, line);
 			free(*s);
-			s = ft_strdup("");
+			*s = ft_strdup("");
 			return (0);
 		}
 		else
@@ -76,11 +76,11 @@ int		gnl_core(int fd, char *buff, char **s, char **line)
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*str[FOPEN_MAX];
+	static char	*str[OPEN_MAX];
 	char		*buff;
 	int			aux;
 
-	if ((fd < 0 || fd >= FOPEN_MAX) || line == NULL
+	if ((fd < 0 || fd >= OPEN_MAX) || line == NULL
 		|| BUFFER_SIZE < 1 || (read(fd, NULL, 0))
 		|| !(buff = ft_calloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
